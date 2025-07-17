@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MinesTrnka.ViewModels"
+             x:Class="MinesTrnka.MainPage"
+             x:DataType="viewmodels:BoardViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <HorizontalStackLayout VerticalOptions="Center">
+            <Button Text="{Binding ButtonText}"
+                    FontFamily="FontAwesome"
+                    FontSize="14"
+                    Command="{Binding NewGameCommand}"
+                    VerticalOptions="Center" />
+            <Entry Keyboard="Numeric"
+                    WidthRequest="30"
+                    MaxLength="2"
+                    Text="{Binding Rows}"
+                    VerticalOptions="Center" />
+            <Label Text=" X "
+                   VerticalOptions="Center" />
+            <Entry Keyboard="Numeric"
+                    WidthRequest="30"
+                    Text="{Binding Columns}"
+                    MaxLength="2"
+                    VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <!-- Hrací plocha -->
+        <Grid x:Name="MineGrid"
+          Grid.Row="1"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill" />
+    </Grid>
+
+</ContentPage>
