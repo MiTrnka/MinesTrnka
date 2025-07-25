@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -80,6 +81,8 @@ public class CellViewModel : INotifyPropertyChanged
     }
 
     // Notifikace o změně vlastnosti pro binding
-    public void OnPropertyChanged(string name) =>
+    public void OnPropertyChanged([CallerMemberName] string name = null)
+    {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 }

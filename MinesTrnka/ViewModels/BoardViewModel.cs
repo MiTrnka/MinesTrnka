@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,8 +20,10 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public void OnPropertyChanged(string name) =>
-    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    public void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 
     public bool isWinEndGame;
 
@@ -34,7 +37,7 @@ public class BoardViewModel : INotifyPropertyChanged
         set
         {
             _rows = value;
-            OnPropertyChanged(nameof(Rows));
+            OnPropertyChanged();
         }
     }
 
@@ -48,7 +51,7 @@ public class BoardViewModel : INotifyPropertyChanged
         set
         {
             _columns = value;
-            OnPropertyChanged(nameof(Columns));
+            OnPropertyChanged();
         }
     }
 
@@ -62,7 +65,7 @@ public class BoardViewModel : INotifyPropertyChanged
         set
         {
             buttonText = value;
-            OnPropertyChanged(nameof(ButtonText));
+            OnPropertyChanged();
         }
     }
 
@@ -176,10 +179,10 @@ public class BoardViewModel : INotifyPropertyChanged
         foreach (var cell in _cellViewModelBoard)
         {
             cell.IsRevealed = true; // odkryje všechna políčka
-            cell.OnPropertyChanged(nameof(CellViewModel.IsRevealed));
-            cell.OnPropertyChanged(nameof(CellViewModel.DisplayText));
-            cell.OnPropertyChanged(nameof(CellViewModel.BackgroundColor));
-            cell.OnPropertyChanged(nameof(CellViewModel.TextColor));
+            cell.OnPropertyChanged();
+            cell.OnPropertyChanged();
+            cell.OnPropertyChanged();
+            cell.OnPropertyChanged();
         }
     }
 
