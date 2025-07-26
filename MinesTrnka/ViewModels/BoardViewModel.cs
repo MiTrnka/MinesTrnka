@@ -36,12 +36,24 @@ public class BoardViewModel : INotifyPropertyChanged
         }
         set
         {
-            _rows = value;
-            OnPropertyChanged();
+            // Pokud je pole prázdné, ulož prázdnou hodnotu.
+            if (string.IsNullOrEmpty(value))
+            {
+                _rows = "";
+            }
+            // Pokud je to platné číslo, omez ho a ulož.
+            else if (int.TryParse(value, out int rowsInt))
+            {
+                rowsInt = Math.Clamp(rowsInt, 1, 40);
+                _rows = rowsInt.ToString();
+            }
+            // Pokud to není ani jedno (např. "abc"), nic nedělej a nech starou hodnotu.
+
+            OnPropertyChanged(); // Vždy upozorni UI na změnu.
         }
     }
 
-    private string _columns = "15"; // výchozí počet řádků
+    private string _columns = "10"; // výchozí počet sloupců
     public string Columns
     {
         get
@@ -50,21 +62,29 @@ public class BoardViewModel : INotifyPropertyChanged
         }
         set
         {
-            _columns = value;
+            if (string.IsNullOrEmpty(value))
+            {
+                _columns = "";
+            }
+            else if (int.TryParse(value, out int columnsInt))
+            {
+                columnsInt = Math.Clamp(columnsInt, 1, 40);
+                _columns = columnsInt.ToString();
+            }
             OnPropertyChanged();
         }
     }
 
-    private string buttonText = "Zahájit novou hru ";
-    public string ButtonText
+    private string statusText = "Zahájit novou hru ";
+    public string StatusText
     {
         get
         {
-            return buttonText;
+            return statusText;
         }
         set
         {
-            buttonText = value;
+            statusText = value;
             OnPropertyChanged();
         }
     }
@@ -90,7 +110,7 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public void StartNewGame()
     {
-        ButtonText = "Zahájit novou hru ";
+        StatusText = "";
         bombCount = 0;
         isWinEndGame = false;
 
@@ -164,14 +184,14 @@ public class BoardViewModel : INotifyPropertyChanged
     {
         isWinEndGame = false;
         RevealAllCells();
-        ButtonText = "Prohral jste! Zahájit novou hru ";
+        StatusText = "Prohral jste! Zahájit novou hru ";
     }
 
     public void EndWinGame()
     {
         isWinEndGame = true;
         RevealAllCells();
-        ButtonText = "Vyhrál jste! Zahájit novou hru ";
+        StatusText = "Vyhrál jste! Zahájit novou hru ";
     }
 
     public void RevealAllCells()

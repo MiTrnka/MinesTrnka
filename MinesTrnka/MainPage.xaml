@@ -3,25 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MinesTrnka.ViewModels"
              x:Class="MinesTrnka.MainPage"
-             x:DataType="viewmodels:BoardViewModel">
+             x:DataType="viewmodels:BoardViewModel" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nová hra"
+                 Command="{Binding NewGameCommand}"
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FontAwesome"
+                             Glyph="&#xf021;"
+                             Color="White"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Text="Nastavení"
+                     Clicked="OnSettingsClicked"
+                     Order="Primary"
+                     Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FontAwesome"
+                                 Glyph="&#xf013;"
+                                 Color="White"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid RowDefinitions="Auto,*">
         <HorizontalStackLayout VerticalOptions="Center">
-            <Button Text="{Binding ButtonText}"
+            <Label  Text="{Binding StatusText}"
                     FontFamily="FontAwesome"
                     FontSize="14"
-                    Command="{Binding NewGameCommand}"
-                    VerticalOptions="Center" />
-            <Entry Keyboard="Numeric"
-                    WidthRequest="30"
-                    MaxLength="2"
-                    Text="{Binding Rows}"
-                    VerticalOptions="Center" />
-            <Label Text=" X "
-                   VerticalOptions="Center" />
-            <Entry Keyboard="Numeric"
-                    WidthRequest="30"
-                    Text="{Binding Columns}"
-                    MaxLength="2"
                     VerticalOptions="Center" />
         </HorizontalStackLayout>
         <!-- Hrací plocha -->

@@ -9,7 +9,13 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new MainPage());
+            var navigationPage = new NavigationPage(new MainPage());
+
+            // Nastavení barev pro horní lištu
+            navigationPage.BarBackgroundColor = Color.FromArgb("#512BD4");
+            navigationPage.BarTextColor = Colors.White;
+
+            return new Window(navigationPage);
         }
     }
 }
