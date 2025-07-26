@@ -16,6 +16,19 @@ public class CellViewModel : INotifyPropertyChanged
     public int Column { get; }
     public bool IsMine { get; set; } // true, pokud je pod políčkem mina
     public bool IsRevealed { get; set; } // true, pokud již bylo odkryto
+    private bool isMarked;
+    public bool IsMarked
+    {
+        get
+        {
+            return isMarked;
+        }
+        set
+        {
+            isMarked = value;
+            OnPropertyChanged();
+        }
+    } // true, pokud je políčko označeno vlajkou
     public int AdjacentMines { get; private set; } // počet sousedních min
 
     private readonly BoardViewModel _boardViewModel;
@@ -23,9 +36,22 @@ public class CellViewModel : INotifyPropertyChanged
     public ICommand ClickCommand { get; }
 
     // Zobrazovaný text podle stavu políčka
-    public string DisplayText => !IsRevealed ? "" :
-                                  IsMine ? "\uf1e2" :
-                                  AdjacentMines == 0 ? "" : AdjacentMines.ToString();
+    public string DisplayText
+    {
+        get
+        {
+            if (!IsRevealed)
+                if (IsMarked)
+                    return "\uf024";
+                else
+                    return "";
+            if (IsMine)
+                return "\uf1e2";
+            if (AdjacentMines == 0)
+                return "";
+            return AdjacentMines.ToString();
+        }
+    }
 
     // Barva pozadí podle stavu a typu políčka
     public Color BackgroundColor
@@ -43,7 +69,23 @@ public class CellViewModel : INotifyPropertyChanged
     }
 
     // Barva textu (např. bílý text na červeném poli s minou)
-    public Color TextColor => IsMine ? Colors.White : Colors.Black;
+    public Color TextColor
+    {
+        get
+        {
+            if (IsRevealed)
+            {
+                if (IsMine)
+                    return Colors.White;
+                else
+                    return Colors.Black;
+            }
+            else
+            {
+                return Colors.Black;
+            }
+        }
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -53,6 +95,8 @@ public class CellViewModel : INotifyPropertyChanged
         Column = column;
         _boardViewModel = boardViewModel;
         ClickCommand = new Command(OnClick); // příkaz po kliknutí
+        IsRevealed = false;
+        IsMarked = false;
     }
 
     // Spočítá počet okolních min a uloží je
@@ -65,19 +109,21 @@ public class CellViewModel : INotifyPropertyChanged
     public void OnClick()
     {
         if (IsRevealed) return;
-        IsRevealed = true;
+        if (_boardViewModel.OnlyMarked)
+            IsMarked = !IsMarked;
+        else
+        {
+            IsRevealed = true;
+            _boardViewModel.unrevealedCellCount--;
+            if (IsMine)
+                _boardViewModel.EndLossGame();
+            if (_boardViewModel.unrevealedCellCount == _boardViewModel.bombCount)
+                _boardViewModel.EndWinGame();
+        }
         OnPropertyChanged(nameof(IsRevealed));
         OnPropertyChanged(nameof(DisplayText));
         OnPropertyChanged(nameof(BackgroundColor));
         OnPropertyChanged(nameof(TextColor));
-
-        _boardViewModel.unrevealedCellCount--;
-
-        if (IsMine)
-            _boardViewModel.EndLossGame();
-
-        if (_boardViewModel.unrevealedCellCount == _boardViewModel.bombCount)
-            _boardViewModel.EndWinGame();
     }
 
     // Notifikace o změně vlastnosti pro binding

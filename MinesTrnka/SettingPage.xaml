@@ -6,22 +6,27 @@
     <VerticalStackLayout>
         <Label
             Text="Počet řádků (1 - 40):"
+            FontSize="Medium"
             HorizontalOptions="Start" />
         <Entry
             Keyboard="Numeric"
             WidthRequest="30"
             Text="{Binding Rows}"
+            FontSize="Medium"
             HorizontalOptions="Start" />
         <Label
             Text="Počet sloupců (1 - 40):"
+            FontSize="Medium"
             HorizontalOptions="Start" />
         <Entry
             Keyboard="Numeric"
             WidthRequest="30"
+            FontSize="Medium"
             Text="{Binding Columns}"
             HorizontalOptions="Start" />
         <Button
             Text="Uložit"
+            FontSize="Medium"
             Clicked="Button_Clicked"
             HorizontalOptions="Start" />
     </VerticalStackLayout>

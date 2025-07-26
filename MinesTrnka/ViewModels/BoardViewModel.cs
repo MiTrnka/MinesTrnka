@@ -27,6 +27,19 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public bool isWinEndGame;
 
+    private bool onlyMarked = false;
+    public bool OnlyMarked
+    { get
+        {
+            return onlyMarked;
+        }
+        set
+        {
+            onlyMarked = value;
+            OnPropertyChanged();
+        }
+    }
+
     private string _rows = "15"; // výchozí počet řádků
     public string Rows
     {
@@ -110,7 +123,8 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public void StartNewGame()
     {
-        StatusText = "";
+        StatusText = "Nová hra zahájena";
+        OnlyMarked = false;
         bombCount = 0;
         isWinEndGame = false;
 
@@ -184,14 +198,14 @@ public class BoardViewModel : INotifyPropertyChanged
     {
         isWinEndGame = false;
         RevealAllCells();
-        StatusText = "Prohral jste! Zahájit novou hru ";
+        StatusText = "Prohral jste!";
     }
 
     public void EndWinGame()
     {
         isWinEndGame = true;
         RevealAllCells();
-        StatusText = "Vyhrál jste! Zahájit novou hru ";
+        StatusText = "Vyhrál jste!";
     }
 
     public void RevealAllCells()

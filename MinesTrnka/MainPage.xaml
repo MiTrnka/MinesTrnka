@@ -27,12 +27,28 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Grid RowDefinitions="Auto,*">
-        <HorizontalStackLayout VerticalOptions="Center">
-            <Label  Text="{Binding StatusText}"
+        <Grid ColumnDefinitions="*, Auto" Padding="10,0">
+            <Label Text="{Binding StatusText}"
+                   FontFamily="FontAwesome"
+                   FontSize="Medium"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start" />
+            <HorizontalStackLayout
+                Grid.Column="1"
+                VerticalOptions="Center"
+                HorizontalOptions="End">
+                <Label
+                    Text="&#xf024;"
                     FontFamily="FontAwesome"
-                    FontSize="14"
-                    VerticalOptions="Center" />
-        </HorizontalStackLayout>
+                    FontSize="Medium"
+                    VerticalOptions="Center">
+                </Label>
+                <CheckBox
+                    x:Name="OnlyMarkedCheckBox"
+                    VerticalOptions="Center"
+                    IsChecked="{Binding OnlyMarked, Mode=TwoWay}"/>
+            </HorizontalStackLayout>
+        </Grid>
         <!-- Hrací plocha -->
         <Grid x:Name="MineGrid"
           Grid.Row="1"
