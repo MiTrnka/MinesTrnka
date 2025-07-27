@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MinesTrnka.SettingPage"
              Title="SettingPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="10">
         <Label
             Text="Počet řádků (1 - 40):"
             FontSize="Medium"
@@ -11,8 +11,8 @@
         <Entry
             Keyboard="Numeric"
             WidthRequest="30"
-            Text="{Binding Rows}"
             FontSize="Medium"
+            Text="{Binding Rows}"
             HorizontalOptions="Start" />
         <Label
             Text="Počet sloupců (1 - 40):"
@@ -25,9 +25,10 @@
             Text="{Binding Columns}"
             HorizontalOptions="Start" />
         <Button
-            Text="Uložit"
+            Text="Uložit a zpět"
             FontSize="Medium"
             Clicked="Button_Clicked"
-            HorizontalOptions="Start" />
+            Margin="10"
+            HorizontalOptions="Fill" />
     </VerticalStackLayout>
 </ContentPage>

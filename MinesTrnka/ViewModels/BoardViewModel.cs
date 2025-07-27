@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Graphics.Text;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -233,10 +234,10 @@ public class BoardViewModel : INotifyPropertyChanged
         foreach (var cell in _cellViewModelBoard)
         {
             cell.IsRevealed = true; // odkryje všechna políčka
-            cell.OnPropertyChanged();
-            cell.OnPropertyChanged();
-            cell.OnPropertyChanged();
-            cell.OnPropertyChanged();
+            cell.OnPropertyChanged(nameof(CellViewModel.IsRevealed));
+            cell.OnPropertyChanged(nameof(CellViewModel.DisplayText));
+            cell.OnPropertyChanged(nameof(CellViewModel.BackgroundColor));
+            cell.OnPropertyChanged(nameof(CellViewModel.TextColor));
         }
     }
 
