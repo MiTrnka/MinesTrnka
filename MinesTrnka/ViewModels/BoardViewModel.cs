@@ -20,6 +20,9 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
+    private IDispatcherTimer timer;
+    private double elapsedTime = 0; // Uplynulý čas v desetinách sekundy
+
     public void OnPropertyChanged([CallerMemberName] string name = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -115,6 +118,14 @@ public class BoardViewModel : INotifyPropertyChanged
         _grid = grid;
         NewGameCommand = new Command(StartNewGame);
 
+        timer = Application.Current.Dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromMilliseconds(100); // Interval 100ms = 0.1s
+        timer.Tick += (s, e) =>
+        {
+            elapsedTime++;
+            StatusText = $"Čas: {elapsedTime / 10:F1}"; // Zobrazujeme čas na jedno desetinné místo
+        };
+
         parsedRows = Preferences.Get("Rows", 15);
         Rows = parsedRows.ToString();
         parsedColumns = Preferences.Get("Columns", 10);
@@ -123,6 +134,10 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public void StartNewGame()
     {
+        // Reset a start časovače
+        elapsedTime = 0;
+        timer.Start();
+
         StatusText = "Nová hra zahájena";
         OnlyMarked = false;
         bombCount = 0;
@@ -196,6 +211,7 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public void EndLossGame()
     {
+        timer.Stop(); // Zastavení časovače
         isWinEndGame = false;
         RevealAllCells();
         StatusText = "Prohral jste!";
@@ -203,9 +219,10 @@ public class BoardViewModel : INotifyPropertyChanged
 
     public void EndWinGame()
     {
+        timer.Stop(); // Zastavení časovače
         isWinEndGame = true;
         RevealAllCells();
-        StatusText = "Vyhrál jste!";
+        StatusText = $"Vyhrál jste! Váš čas: {elapsedTime / 10:F1}";
     }
 
     public void RevealAllCells()
