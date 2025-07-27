@@ -12,7 +12,7 @@
             var navigationPage = new NavigationPage(new MainPage());
 
             // Nastavení barev pro horní lištu
-            navigationPage.BarBackgroundColor = Color.FromArgb("#512BD4");
+            navigationPage.BarBackgroundColor = Color.FromArgb("#000000");
             navigationPage.BarTextColor = Colors.White;
 
             return new Window(navigationPage);

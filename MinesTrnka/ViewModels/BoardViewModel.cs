@@ -14,6 +14,8 @@ public class BoardViewModel : INotifyPropertyChanged
 {
     private readonly Grid _grid; // odkaz na mřížku v UI
     public ICommand NewGameCommand { get; } // příkaz pro spuštění nové hry
+    public ICommand ToggleMarkModeCommand { get; } // Příkaz pro přepnutí módu značení
+
     private CellViewModel[,] _cellViewModelBoard = new CellViewModel[1,1]; // 2D pole jednotlivých políček
 
     private const int MineChancePercent = 15; // ~15 % políček bude minových
@@ -117,6 +119,7 @@ public class BoardViewModel : INotifyPropertyChanged
     {
         _grid = grid;
         NewGameCommand = new Command(StartNewGame);
+        ToggleMarkModeCommand = new Command(() => OnlyMarked = !OnlyMarked); // Inicializace nového příkazu
 
         timer = Application.Current.Dispatcher.CreateTimer();
         timer.Interval = TimeSpan.FromMilliseconds(100); // Interval 100ms = 0.1s

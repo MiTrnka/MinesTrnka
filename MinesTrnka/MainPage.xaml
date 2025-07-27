@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MinesTrnka.ViewModels"
              x:Class="MinesTrnka.MainPage"
-             x:DataType="viewmodels:BoardViewModel" >
+             x:DataType="viewmodels:BoardViewModel"
+             BackgroundColor="Black">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Nová hra"
-                 Command="{Binding NewGameCommand}"
-                 Order="Primary"
-                 Priority="0">
+                     Command="{Binding NewGameCommand}"
+                     Order="Primary"
+                     Priority="0">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="FontAwesome"
-                             Glyph="&#xf021;"
-                             Color="White"/>
+                                 Glyph="&#xf021;"
+                                 Color="White"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
         <ToolbarItem Text="Nastavení"
@@ -30,30 +31,40 @@
         <Grid ColumnDefinitions="*, Auto" Padding="10,0">
             <Label Text="{Binding StatusText}"
                    FontFamily="FontAwesome"
-                   FontSize="Medium"
+                   FontSize="Large"
                    VerticalOptions="Center"
-                   HorizontalOptions="Start" />
-            <HorizontalStackLayout
-                Grid.Column="1"
-                VerticalOptions="Center"
-                HorizontalOptions="End">
-                <Label
-                    Text="&#xf024;"
+                   HorizontalOptions="Start"
+                   TextColor="White" />
+
+            <Button Grid.Column="1"
+                    Command="{Binding ToggleMarkModeCommand}"
                     FontFamily="FontAwesome"
-                    FontSize="Medium"
-                    VerticalOptions="Center">
-                </Label>
-                <CheckBox
-                    x:Name="OnlyMarkedCheckBox"
-                    VerticalOptions="Center"
-                    IsChecked="{Binding OnlyMarked, Mode=TwoWay}"/>
-            </HorizontalStackLayout>
+                    FontSize="24"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    Padding="0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Text" Value="&#xf1e2;" />
+                        <Setter Property="TextColor" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding OnlyMarked}"
+                                         Value="True">
+                                <Setter Property="Text" Value="&#xf024;" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
-        <!-- Hrací plocha -->
+
         <Grid x:Name="MineGrid"
-          Grid.Row="1"
-          VerticalOptions="Fill"
-          HorizontalOptions="Fill" />
+              Grid.Row="1"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill" />
     </Grid>
 
 </ContentPage>
