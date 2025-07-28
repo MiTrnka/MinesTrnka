@@ -218,7 +218,7 @@ public class BoardViewModel : INotifyPropertyChanged
         timer.Stop(); // Zastavení časovače
         isWinEndGame = false;
         RevealAllCells();
-        StatusText = "Prohral jste!";
+        StatusText = "Prohrál jste!";
     }
 
     public void EndWinGame()
