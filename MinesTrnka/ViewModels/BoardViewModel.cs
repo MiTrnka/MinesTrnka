@@ -63,7 +63,7 @@ public class BoardViewModel : INotifyPropertyChanged
             // Pokud je to platné číslo, omez ho a ulož.
             else if (int.TryParse(value, out int rowsInt))
             {
-                rowsInt = Math.Clamp(rowsInt, 1, 40);
+                rowsInt = Math.Clamp(rowsInt, 1, 30);
                 _rows = rowsInt.ToString();
             }
             // Pokud to není ani jedno (např. "abc"), nic nedělej a nech starou hodnotu.
@@ -87,7 +87,7 @@ public class BoardViewModel : INotifyPropertyChanged
             }
             else if (int.TryParse(value, out int columnsInt))
             {
-                columnsInt = Math.Clamp(columnsInt, 1, 40);
+                columnsInt = Math.Clamp(columnsInt, 1, 30);
                 _columns = columnsInt.ToString();
             }
             OnPropertyChanged();

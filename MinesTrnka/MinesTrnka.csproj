@@ -26,10 +26,6 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.minestrnka</ApplicationId>
 
-		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
-
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
 
@@ -48,26 +44,26 @@
 	  <AndroidSigningStorePass>Robotron1</AndroidSigningStorePass>
 	  <AndroidSigningKeyAlias>minestrnka</AndroidSigningKeyAlias>
 	  <AndroidSigningKeyPass>Robotron1</AndroidSigningKeyPass>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
@@ -76,26 +72,26 @@
 	  <AndroidSigningStorePass>Robotron1</AndroidSigningStorePass>
 	  <AndroidSigningKeyAlias>minestrnka</AndroidSigningKeyAlias>
 	  <AndroidSigningKeyPass>Robotron1</AndroidSigningKeyPass>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>com.trnka.minestrnka</ApplicationId>
-	  <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
-	  <ApplicationVersion>5</ApplicationVersion>
+	  <ApplicationDisplayVersion>1.5</ApplicationDisplayVersion>
+	  <ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

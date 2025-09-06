@@ -5,7 +5,7 @@
              Title="SettingPage">
     <VerticalStackLayout Padding="10">
         <Label
-            Text="Počet řádků (1 - 40):"
+            Text="Počet řádků (1 - 30):"
             FontSize="Medium"
             HorizontalOptions="Start" />
         <Entry
@@ -15,7 +15,7 @@
             Text="{Binding Rows}"
             HorizontalOptions="Start" />
         <Label
-            Text="Počet sloupců (1 - 40):"
+            Text="Počet sloupců (1 - 30):"
             FontSize="Medium"
             HorizontalOptions="Start" />
         <Entry
